@@ -44,7 +44,7 @@ echo $?
 | `PINGPONG_LOG_LEVEL` | `info` | уровень логирования (`debug`/`info`/`warn`/`error`) |
 
 ## Конфигурация Jenkins
-Требуется установить credentials для AWS user
+Требуется установить credentials для AWS user - aws-pingpong-ci
 
 ### 1. Локальный запуск через `make`
 Используется для разработки, локального тестирования и отладки
