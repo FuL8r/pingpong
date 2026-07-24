@@ -1,0 +1,10 @@
+bin/
+certs/
+deploy/
+docs/
+scripts/
+*.md
+Makefile
+Jenkinsfile
+.git/
+.gitignore
