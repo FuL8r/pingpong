@@ -1,5 +1,5 @@
 // Runs on ANY Jenkins whose agent has Docker. No terraform/aws/go pre-installed
-// Every tool runs in its official image via deploy/ci/dtool.sh. 
+// Every tool runs in its official image via deploy/ci/dtool.sh
 
 pipeline {
   agent any

@@ -26,7 +26,7 @@ type statusRecorder struct {
 	wrote  bool
 }
 
-// WriteHeader сохраняет HTTP-статус ответа при его первой записи и проксирует вызов в http.ResponseWriter
+// WriteHeader save HTTP response status when it is first recorded and proxies the call to http.ResponseWriter
 func (r *statusRecorder) WriteHeader(code int) {
 	if !r.wrote {
 		r.status = code

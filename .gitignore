@@ -1,7 +1,7 @@
-# Build artifacts
+#artifacts
 /bin/
 
-# Local TLS material — never commit private keys
+# TLS 
 /certs/
 *.pem
 *.key

@@ -1,4 +1,4 @@
-//Файл конфигураци, считывающий настройки из env variables
+//config file, read params from env variables
 
 package config
 
@@ -24,15 +24,15 @@ type Config struct {
 	LogLevel          slog.Level
 }
 
-// TLSEnabled проверяет включен ли TLS
+// TLSEnabled check enabled TLS
 func (c Config) TLSEnabled() bool {
 	return c.TLSCert != "" && c.TLSKey != ""
 }
 
-// Получение значений из env
+// Get values from env
 type getenv func(key string) (value string, ok bool)
 
-// Load Загрузка параметров конфигурации в память
+// Load params from config to memory
 func Load(get getenv) (Config, error) {
 	cfg := Config{
 		Addr:              lookupString(get, "PINGPONG_ADDR", ":8089"),
@@ -79,7 +79,7 @@ func Load(get getenv) (Config, error) {
 	return cfg, nil
 }
 
-// validate Проверка валидности значений параметров конфигурации
+// validate config params
 func (c Config) validate() error {
 	if strings.TrimSpace(c.Addr) == "" {
 		return fmt.Errorf("config: PINGPONG_ADDR must not be empty")
@@ -96,7 +96,7 @@ func (c Config) validate() error {
 	return nil
 }
 
-// lookupString получение значения или возврат дефолтного в string формате
+// lookupString get data and return in string type
 func lookupString(get getenv, key, def string) string {
 	if v, ok := get(key); ok {
 		return v
@@ -104,7 +104,7 @@ func lookupString(get getenv, key, def string) string {
 	return def
 }
 
-// lookupInt64 получение значения и приведение к Int64
+// lookupInt64 get data and return in Int64 type
 func lookupInt64(get getenv, key string, def int64) (int64, error) {
 	v, ok := get(key)
 	if !ok {
@@ -117,7 +117,7 @@ func lookupInt64(get getenv, key string, def int64) (int64, error) {
 	return n, nil
 }
 
-// lookupInt получение значения и преведение к Int
+// lookupInt get data and return in Int type
 func lookupInt(get getenv, key string, def int) (int, error) {
 	n, err := lookupInt64(get, key, int64(def))
 	if err != nil {
@@ -126,7 +126,7 @@ func lookupInt(get getenv, key string, def int) (int, error) {
 	return int(n), nil
 }
 
-// lookupDuration получение значения и преведение к временному интервалу >= 0
+// lookupDuration get data and return in time.Duration  >= 0
 func lookupDuration(get getenv, key string, def time.Duration) (time.Duration, error) {
 	v, ok := get(key)
 	if !ok {
@@ -142,7 +142,7 @@ func lookupDuration(get getenv, key string, def time.Duration) (time.Duration, e
 	return d, nil
 }
 
-// lookupLevel получение значения и преведение к log severity
+// lookupLevel get data and return log severity
 func lookupLevel(get getenv, key string, def slog.Level) (slog.Level, error) {
 	v, ok := get(key)
 	if !ok {

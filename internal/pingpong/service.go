@@ -1,4 +1,5 @@
-// package pingpong содержит базовую бизнес логику
+// package pingpong contains business logic
+
 package pingpong
 
 const AllowedBody = "ReallyNotBad"
@@ -19,7 +20,7 @@ type Response struct {
 	Body     string
 }
 
-// Service обрабатывает команды типа пинг-понг
+// Service processes ping-pong type commands
 type Service interface {
 	Respond(Command) Response
 }
